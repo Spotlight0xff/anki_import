@@ -4,6 +4,7 @@ import sys, getopt, os, regex,re
 def items2anki(items, mdir):
     lines = items.splitlines()
     lines_new = []
+    images = []
 
     for line in lines:
         if line.isspace() or line == '':
@@ -14,28 +15,43 @@ def items2anki(items, mdir):
             line = line[6:]
 
         # remove \autoref{.*},
-        line = regex.sub(r'\\autoref\{fig:(.*?)\}', '\\1', line)
+        match = regex.search(r'\\autoref\{fig:(.*?)\}', line)
+        if match: # we only want the alphanumeric figure name( elsewise latex crashes)
+            fig = match.group(1)
+            fig = re.sub(r'[^a-zA-Z0-9]', '', fig)
+            line = regex.sub(r'\\autoref\{fig:(.*?)\}', fig, line)
 
         # make images work
         # TODO:
         # * check if image exists (+ autodetect extension)
         # * validate mdir properly
-        line = regex.sub(r'\\\\includegraphics(\[.*?\])?\{(.*?)\}', '<img src="'+mdir+'/\\2.jpg">', line)
+        match = regex.search(r'\\includegraphics(\[.*?\])?\{(.*?)\}', line)
+        if match:
+            line = regex.sub(r'\\includegraphics(\[.*?\])?\{(.*?)\}', '\\2', line)
+            images.append(match.group(2)+".png")
+
+        if re.match(r'bravais', line):
+            print(line)
         lines_new.append(line)
 
-    return "[latex]"+"\\\\".join(lines_new)+"[/latex]"
+    txt = "[latex]"+"\\\\".join(lines_new)+"[/latex]"
+    txt += "<br>"
+    for image in images:
+        txt += '<img src="'+image+'" /><br>'
+    return txt
 
 
 def get_paragraphs(text, mdir):
     length = len(text)
     it = 0
     anki = ''
+    # todo r'', never change a running system... :/
     matches = regex.findall('\\\\(paragraph|section|subsection|subsubsection)\*?\{(.*?):?\}\s*\\\\begin\{itemize\}(\[.*?\])?((.|\s)*?)\\\\end\{itemize}', text)
     for match in matches:
         title = match[1]
         items = match[3]
         txt = items2anki(items, mdir)
-        print(title+":\n"+txt+"\n\n\n")
+        #print(title+":\n"+txt+"\n\n\n")
         anki += "[latex]"+title+"[/latex]"+";"+txt+"\n"
     return anki
 
