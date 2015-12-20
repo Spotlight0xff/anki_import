@@ -1,0 +1,591 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{enumerate}
+%\usepackage{ngerman}
+%\usepackage[latin1]{inputenc}
+\usepackage{t1enc} % notwendig für hyphenation
+\usepackage[labelfont=bf]{caption} % Captions fett
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[babel,german=quotes]{csquotes}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure} % mehrere Grafiken in einer Figure-Umgebung
+\usepackage{texdraw}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{color}
+\setlist{nolistsep}
+%\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{siunitx}
+\sisetup{locale=DE} % Komma als Dezimaltrennzeichen, global definiert
+\hyphenation{Nah-kan-ten Dun-kel-zähl-rate Ge-mein-schaft Mess-sys-te-me Ep-oxid-har-ze Teub-ner win-kel-auf-ge-lös-ter element-spe-zi-fische element-spe-zi-fisch Leck-such-test Ener-gie-po-si-tion äqui-va-len-ten}
+\usepackage[bottom]{footmisc}
+\newcommand{\versuchname}{Hunklinger - Festkörperphysik}
+\usepackage{scrpage2}
+
+\pagestyle{scrheadings}
+\ihead{\versuchname}
+\ohead{\thepage}
+\setheadsepline{0.4pt}
+
+\setlength{\textwidth}{14cm}
+\setlength{\textheight}{22cm}
+
+\renewcommand\thefootnote{[\arabic{footnote}]}
+
+\newcommand{\eq[1]}{\begin{equation}{#1}\end{equation}}
+
+%\renewcommand{\figurename}{\textit{Abb.}}
+%\renewcommand{\tablename}{\textit{Tab.}}
+
+\title{\vspace{-2cm}
+	Praktikum Moderne Physik\\
+	~\\
+	Auswertung:\\
+	\textbf{\versuchname}
+}
+
+\author{
+	Gruppe Mo-103 (SS15): Jasmin Bouazza, Marco Merboldt\\
+}
+
+%\date{\today}
+\date{26. Oktober 2015}
+
+% Anführungszeichen
+%"`Beispiel"' =  (" + `) {blubb} (" + ')
+
+% Aufzählungspunkte
+%\begin{itemize}
+%	\item \dots
+%\end{itemize}
+
+% Alphabetische Nummerierung
+%\begin{enumerate}[label=\textbf{\alph*)}]
+%	\item \dots
+%	\item \dots
+%\end{enumerate}
+
+% Grafik einbinden
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=\textwidth]{path/name.png}
+%	\caption{description}
+%	\label{ref}
+%\end{figure}
+
+% Tabelle einfügen
+%\begin{table}
+%	\caption{Tabellenüberschrift}
+%	\label{tab:ref}
+%	\centering
+%	\begin{tabular}{|c|rl|}\hline
+%		\textbf{c1} 	& \textbf{c1}	& \textbf{c1} 	\\ \hline\hline
+%		r1c1 		& r1c2			& r1c3 		\\ \hline
+%		r2c1 		& r2c2			& r2c3 		\\ \hline
+%	\end{tabular}
+%\end{table}
+
+% Fußntoe
+%\footnote{z.B. Anmerkung, Quelle, ...}
+
+% Gleichungen
+%\begin{equation}
+%	Gleichung = \dots
+%\end{equation}
+
+% SI-Einheiten (Beispiele)
+%\SI{1000}{\ohm}
+%\SI{10}{\micro\metre}
+%\si{\micro\metre}
+%\si\micro
+
+% Zeitliche Ableitungen
+%$\dot{x}$
+%$\ddot{x}$
+
+\begin{document}
+\maketitle
+\vspace{.5cm}
+\setcounter{page}{0}
+\thispagestyle{empty}
+\newpage
+
+% Grundlagen
+\tableofcontents
+\section{Allgemeines}
+Festkörper lassen sich in verschiedene Kategorien einteilen, amorphe Festkörper, ideale Kristalle (Einkristalle).\\
+Fast alle Festkörpereigenschaften lassen sich aus der Schrödinger-Gleichung herleiten.\\
+Typische Festkörper besitzen eine Größe von mehreren $ \SI{}{\centi\meter^3} \hat{=} 10^{23}$ Atomen oder mehr.\\
+Ebenfalls wichtig: Pauli-Prinzip, Maxwellsche Gleichungen, Konzepte der Thermodynamik, Statistische Mechanik.\\
+In \emph{Fluiden} ändert sich die Position der Atome zeitlich, in Festkörpern bleibt sie weitgehend gleich, jeweils in einem \emph{lokalen Minimum} der potentiellen Energie. Ein Auslenken eines Atoms führt aufgrund von Kopplung auch zu Schwingungen der anderen Atome. 
+\section{Bindung im Festkörper}
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.7\linewidth]{Lennard_Jones}
+\caption{Lennard-Jones-Potential. Beschreibt das Potential zwischen zwei neutralen Atomen mit abgeschlossenen Elektronenschalen.}
+\label{fig:Lennard_Jones}
+\end{figure}
+\subsection{Bindungstypen}
+Es gibt 5 Grundtypen von Bindungen, sie unterscheiden sich hauptsächlich in der räumlichen Verteilung der beteiligten Elektronen. Meist trifft man jedoch Mischformen an.\\
+Elektrostatische Anziehung zw. Elektronen (negativ) \& Atomkernen (positiv) einzige Ursache für Zusammenhalt von FK.
+\paragraph*{Haupttypen kristalliner Bindungskräfte:}
+\begin{itemize}
+	\item van der Waals-Kräfte: schwach, neutrale Atome, durch Fluktuationen in den Ladungsverteilungen der Atome
+	\item ionisch: anziehende elektrostatische Kräfte zw. positiv \& negativ geladenen Ionen
+	\item metallisch: Alkaliatome haben Valenzelektron an gemeinsamen Elektronensee abgegeben
+	\item kovalent: neutrale Atome durch Überlapp ihrer Elektronenverteilung zusammen gehalten
+	\end{itemize}
+\paragraph*{Bindungsenergie $\mathrm{oder}$ Gitterenergie:} \begin{itemize}
+	\item Arbeit, die zur Zerlegung des Festkörpers (im Grundzustand) in seine Bestandteile (d.h. Ionen, Atome) aufgewendet werden muss. 
+	\item Maß für die Stärke der Wechselwirkung (elektrostatische Kräfte) und Zahl der wechselwirkenden Atome.
+\end{itemize}
+\paragraph*{Lennard-Jones-Potential:} \begin{itemize}
+	\item Ergibt sich aus Addition von van-der-Waals-Potential (anziehend, 1) und abstoßenden Potential von zwei neutralen Atomen/Molekülen mit abgeschlossenen Elektronenschalen (2): $ \varphi(r) = \underbrace{\frac{A}{r^{12}}}_{(1)} \underbrace{- \frac{B}{r^{6}}}_{(2)} = 4\varepsilon \left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]$
+	\item Dargestellt in \autoref{fig:Lennard_Jones}, bei starker Annäherung geht Anziehung in Abstoßung über und verhindert ein Durchdringen der Atome. Grund: Pauli-Prinzip $ \Rightarrow $ Atome verhalten sich fast wie harte Kugeln.
+\end{itemize}
+\subsubsection{van-der-Waals-Bindung (v-d-W-B.)}
+Edelgasatome mit ihren abgeschlossenen Elektronenschalen gehen i. d. R. keine Bindung mit Nachbaratomen ein \begin{itemize}[label=]
+	\item \begin{itemize}[label=$\Rightarrow$]
+		\item auch in FK Kugelgestalt.
+		\item bilden Kristalle hoher Symmetrie.
+	\end{itemize}
+\end{itemize}
+
+Wirken zwischen sämtlichen Atomen, beruhen auf elektrischer \emph{Dipol-Dipol-Wechselwirkung}. Auch wenn Edelgasgasatome (= kugelsymmetrische Atome) kein permanentes Dipolmoment besitzen, tritt die v-d-W-B. auch hier auf. Dies liegt daran, dass die Ladungsverteilung der Atome fluktuiert.
+\subsubsection{Ionenbindung}
+Auch \emph{heteropolare Bindung} genannt, folgt aus Elektronentransfers zwischen Atomen, die zur Ionenbildung führen.
+\paragraph*{Madelung-Konstante $ \alpha $:}
+\subsubsection{Kovalente Bindung}
+\begin{itemize}
+	\item klassische Elektronenpaar- oder gleichgeladene Bindung der Chemie
+	\item sehr stark, vergleichbar mit Ionenbindung, stark gerichtet
+	\item Normalerweise von 2 Elektronen gebildet, je 1 Elektron pro Atom. Elektronen befinden sich zwischen Atomen mit antiparallelen Spins
+	\item Bindung hängt von relativer Spinstellung ab, da Ladungsverteilung je nach Spinorientierung zueinander ändert (Pauli-Prinzip!)\\
+	$ \rightarrow $ Spinabhängige Coulomb-Energie heißt \textbf{Austauschwechselwirkung}.
+	\item Pauli-Prinzip $ \rightarrow $ abstoßend bei vollständig gefüllten Schalen, teilweise gefüllt: Orbitale überlappen und verkürzen Bindungslänge, ohne dass Anregung in höhere Energieniveaus notwendig 
+	\item Übergang ionisch $ \leftrightarrow $ kovalent: kontinuierlich
+\end{itemize}
+\subsubsection{Metallische Bindung}
+\paragraph*{Wigner-Seitz-Radius:}
+\subsubsection{Wasserstoffbrückenbindung}
+Tritt in wasserstoffhaltigen Substanzen auf.
+\section{Struktur der Festkörper}
+\subsection{Herstellung}
+Ohne besondere Vorkehrungen: Beim Abkühlen einer Schmelze i. A. $ \rightarrow $ polykristalline Festkörper. Einkristalle sind anisotrop (d.h. ihre Eigenschaften sind richtungsabhängig), während \enquote{Polykristalle} isotrope phys. Eigenschaften besitzen.\\
+Einkristalle sind wichtig für Materialwissenschaften, Halbleitertechnik (Silizium) und Nachrichtentechnik (piezoelektrische Einkristalle).
+\subsection{Ordnung und Struktur der Kristalle}
+Idealkristalle und amorphe Festkörper beschreiben zwei extreme Fälle, zwischen denen ein breites Spektrum an Festkörpern mit teilweiser Ordnung existiert.
+\paragraph*{Nahordnung:}
+\paragraph*{Fernordnung:} Ordnung in Festkörpern über große Abstände hinweg. Ist gegeben bei idealen Einkristallen.
+\paragraph*{Wertigkeit:}
+\paragraph*{Basis:} \begin{itemize}
+	\item  Bezeichnet identische, gleich orientierte Atomgruppe, aus denen sich ein idealer Festkörper zusammensetzt.
+	\item wird dreidimensional periodisch aneinander gereiht.
+	\item Zahl der Atome in dieser Gruppe kann von 1 (viele Metalle) bis $ >10^4 $ (Proteinkristalle) bestehen.
+	\item Wird jeder Basis ein Punkt im Raum zugeordnet, so entsteht ein \emph{Punktgitter}, welches eine mathematische Beschreibung ermöglicht. 
+	\item Wahl der Basis ist \textbf{nicht} eindeutig.
+\end{itemize}
+\paragraph*{Symmetrie von Kristallen:} Lässt sich unterscheiden in \emph{Translationssymmetrie} (Struktur als Ganzes verschoben) und Punktsymmetrie (mind. 1 Punkt in Raum festhalten). Die Translationssymmetrie wird am häufigsten verwendet.
+\paragraph*{Translations- $\mathrm{oder}$ Gittervektor $ \textbf{R} $:} Im Idealkristall wiederholt sich die Umgebung $ \mathcal U $ für $ \mathcal U(r) = \mathcal{U} (\textbf{r}+\textbf{R})$ mit dem beliebigen Ortsvektor $ \textbf{r} $. Die Translation zu einem äquivalenten Punkt ist $ \textbf{R} $, dabei gilt \begin{align*}
+\textbf{R} = n_1 \textbf{a} + n_2 \textbf{b} + n_3 \textbf{c}\mathrm{.}
+\end{align*}
+$ \textbf{a, b, c} $ werden \emph{fundamentale Translationsvektoren} oder \emph{Basisvektoren} genannt und spannen ein schiefwinkliges KS auf, welches an die Gittersymmetrie angepasst ist. Die Längen der Basisvektoren werden als \emph{Gitterkonstanten} bezeichnet. $ n_{1,2,3} $ sind ganzzahlig. Die Wahl der Basisvektoren ist nicht eindeutig!
+\paragraph*{Elementarzelle $\mathrm{oder}$ Einheitszelle:} \begin{itemize}
+	\item Beschreibt Parallelepiped, welches von Basisvektoren aufgespannt wird.
+	\item Der Raum kann lückenlos gefüllt werden, wenn sie aneinander gereiht werden.
+\end{itemize}
+\paragraph*{Zähligkeit $ n $:}\begin{itemize}
+	\item gibt an, wie oft bei einer Drehung des Kristalls um $ 2\pi $ Deckungsgleichheit auftritt
+	\item $ n\in \left\{1,2,3,4,6\right\} $, Rest lässt sich nicht raumfüllend anordnen
+\end{itemize}
+\paragraph*{Bravais-Gitter:}
+\begin{itemize}
+	\item primitive EZ stellen oft nicht komplette Gittersymmetrie dar $ \rightarrow $ stattdessen Bravais-Gitter
+	\item $ 14  $ 3D-Bravais-Gitter, 7 davon mit nicht-primitiver EZ\\
+	\includegraphics[width=\linewidth]{bravais}
+\end{itemize}
+\paragraph*{Packungsverhältnis:}
+\begin{itemize}
+	\item \% des Raums, der von identischen, sich berührenden Kugeln an den Gitterpunkten ausgefüllt ist. Kantenlänge des Würfels ist Gitterkonstante $ a $.
+\end{itemize}
+\paragraph*{Kubisches Gittersystem:}
+\begin{itemize}
+	\item besteht aus 3 Gittern\\
+	\hspace*{-2cm}\begin{tabular}{cccc}
+		&\includegraphics[width=0.2\linewidth]{sc} & \includegraphics[width=0.2\linewidth]{bcc} & \includegraphics[width=0.2\linewidth]{fcc} \\
+		& einfach kubisch & kubisch raumzentriert & kubisch flächenzentriert\\
+		&\textbf{sc} & \textbf{bcc} & \textbf{fcc}\\
+		& simple cubic & body-centered cubic & face-centered cubic\\
+		V(prim. Zelle) & $ a^3 $ & $ \frac{a^3}{2} $ & $ \frac{a^3}{4} $ \\
+		Abst. n. Nachb. & $ a $ & $ \frac{\sqrt{3}a}{2} $ & $ \frac{a}{\sqrt{2}} $\\
+		Packungsv. & $ \SI{0,52}{} $ & $ \SI{0,68}{} $ & $ \SI{0,74}{} $
+	\end{tabular}
+	\item Sonderfall Diamant: gleichartige Atome, aber prim. Elementarzelle 2 Atome
+\end{itemize}
+\paragraph*{Hexagonal dichteste Kugelpackung (hcp):}
+\begin{itemize}
+	\item Packungsverhältnis $ \SI{0,74}{} $
+	\item 12 nächste Nachbarn (Maximalwert)
+	\item Beispiel: viele Metalle
+\end{itemize}
+\paragraph*{Wigner-Seitz-Zelle:}
+\begin{itemize}
+	\item primitive Zelle, Zentrum ist ein Gitterpunkt
+	\item enthält Symmetrie und ermöglicht lückenloses Füllen
+	\item umschließt Raum, der Aufgitterpunkt näher als jedem anderen Gitterpunkt ist
+	\item \textbf{Konstruktion:} 2D: kleinste Fläche, die bei Zeichnen von Mittelsenkrechten der Verbindung zu den Nachbaratomen eingeschlossen wird
+	\begin{center}
+		\includegraphics[width=0.3\linewidth]{wignerseitz}
+	\end{center}
+\end{itemize}
+\section{Strukturbestimmung}
+HIER: Beugungsexperiment = Streuexperiment
+\begin{itemize}
+	\item Untersuchung von \textbf{Oberflächen:} Mikroskopie (Elektronen-, Rastertunnel-, Rasterkraft-) $ \Rightarrow $ wichtig für Oberflächenphysik
+	\item \textbf{Innerer Aufbau} von FK: Streuexperimente mit kohärenter Streuung \begin{itemize}
+		\item \textbf{massive FK:} Röntgen- \& Neutronenstrahlen
+		\item \textbf{Oberflächen, dünne Filme:} Elektronen- und Atomstrahlen
+		\item Neutronen ww. i. d. R. mit den Kernen, der Rest mit Elektronenhüllen 
+	\end{itemize}
+	\item Aus Optik: Beugung stark für $ \lambda\approx $ Abmessungen beugendes Objekt\\
+	$ \Rightarrow $ unterschiedliche Energien je nach Strahlung
+	\item \textbf{Streuprozesse} werden unterschieden in
+	\begin{itemize}
+		\item \textbf{elastisch:} Energie der Strahlung konst., da elektronische \& vibronische Zustände vom FK unbeeinflusst $ \Rightarrow $ zur Strukturbestimmung
+		\item \textbf{inelastisch:}  Energieaustausch gestreute Teilchen $ \leftrightarrow $ FK $ \Rightarrow $ Untersuchung von Anregungszuständen
+	\end{itemize} 
+\end{itemize}
+\paragraph*{Reziprokes Gitter:}\begin{itemize}
+	\item Neues Koordinatensystem, aufgespannt von Basisvektoren $ \vec b_{1,2,3} $
+	\item Kristalle translationssymmetrisch $ \rightarrow $ Stromdichteverteilung $ \rho(\vec r) $ periodisch\\
+	$ \Rightarrow $ Symmetrie nutzen $ \rightarrow \rho(\vec r)$ in Fourier-Reihe entwickeln $ \rightarrow $ einzelne Fourierkomponenten betrachten
+	\item F-R von $ \rho(\vec r): \rho(\vec r) = \sum\limits_{h,k,l} \rho_{hkl}e^{i \vec G_{hkl} \cdot \vec r}~~, h, k, l \in \mathbb Z ~, \rho_{hkl} = \frac{1}{V_Z} \int_{V_Z} \rho(\vec r) e^{-i\vec G_{hkl} \cdot \vec r}\mathrm{d}V $ Integration über Volumen der primitiven Elementarzelle $ V_Z $
+	\item $ \vec G_{hkl} = h \vec b_1 + k \vec b_2 + l \vec b_3 $ ist Punkt von reziprokem Gitter
+	\item Es gilt $ \vec b_i \cdot  \vec a_j = 2 \pi \delta_{ij} \Rightarrow \vec b_1 = \frac{2\pi}{V_Z} \left(\vec a_2 \times \vec a_3\right), \vec b_2 = \frac{2\pi}{V_Z} \left(\vec a_3 \times \vec a_1\right) , \vec b_3 = \frac{2\pi}{V_Z} \left(\vec a_1 \times \vec a_2\right)  $
+	\item Volumen der primitiven Elementarzelle: Reales Gitter: $ V_Z = \left(\vec a_1 \times \vec a_2\right)\cdot \vec a_3 $, Reziprokes Gitter: $ \left(\vec b_1 \times \vec b_2\right)\cdot \vec b_3 = \frac{(2\pi)^3}{V_Z} $
+	\item Vektoren haben \emph{inverse Länge} $ \rightarrow $ existieren im \emph{$ \vec k $-Raum}, wegen $ \vec p = \hbar \vec k  $ auch \emph{Impulsraum} genannt.
+\end{itemize}
+\paragraph*{Brillouin-Zone:}\begin{itemize}
+	\item Wigner-Seitz-Zelle des reziproken Gitters heißt 1. Brillouin-Zone.
+	\item Geometrische Veranschaulichung der Beugungsbedingung $ 2 \vec k \cdot \vec G  = G^2$
+	\item Wichtig für Gitterdynamik, Beschreibung von Elektronenbewegung
+	\item Konstruktion analog zur Wigner-Seitz-Zelle
+	\item Höhere Ordnung: auch weiter entfernte Punkte miteinbeziehen.
+	\item Mittelpunkt der 1. Zone heißt $ \Gamma $-Punkt.
+	\item Polyeder füllen den reziproken Raum lückenlos.
+\end{itemize}
+\paragraph*{Kristall-, Gitter - $\mathrm{oder}$ Netzebene:} \begin{itemize}
+	\item Ebene, die durch Gitterpunkte aufgespannt wird.
+	\item Translationsinvarianz $ \Rightarrow $ (unendlich) viele gleiche Ebenen parallel
+\end{itemize}
+\paragraph*{Millersche Indizes:}
+\begin{itemize}
+	\item Reziproke Längen zur Charakterisierung von Schar von parallelen Ebenen
+	\item \textbf{Vorgehen:} Achsenabschnitte suchen, Kehrwert bilden, mit gleichem Faktor multiplizieren, sodass möglichst kleine ganze Zahlen entstehen.
+	\item \textbf{Bsp.:} Achsenabschnitte bei $ \frac14 $ ($\vec a_1$), $ \frac12 $ ($\vec a_2$), $\infty $ ($\vec a_3$) $ \Rightarrow (hkl) = (120) $
+	\item Negative Achsenabschnitte: $ -1 \hat = \bar 1 $, z. B.: $ (\bar 120) $
+	\item Auch Richtungsangaben möglich: $ [hkl]= h \vec a_1 + k \vec a_2 + l \vec a_3 $, $ \perp $ auf $ (hkl) $
+	\item Bezeichnen der gleichwertigen Ebenen: $ \left<hkl\right> $ oder $ \left\{hkl\right\} $
+	\item Relevant: Meist Ebenen mit geringen Indizes, zeigen grundlegende Periodizitäten.
+	\item Sonderfall hexagonale Kristalle: unerwartete Gleichwertigkeiten (z. B. $ (100), (1\bar 1 0) $) $ \rightarrow $ zusätzlicher Index $ i= -(h+k) \Rightarrow (hkil)$
+	\item Jedem $ (hkl) $ ist ein reziproker Gittervektor $ G_{hkl} $ zugeordnet.
+\end{itemize}
+\paragraph*{Streuung an Kristallen:}
+\begin{itemize}
+	\item Als Näherung: Eintreffende und gestreute Welle als ebene Welle
+	\item Zusammenhang zwischen $ \rho(\vec r) $ und Streuintensität herstellen
+	\item Relevant: Phasendifferenz, bei $ k=k_0 $ (elastische Streuung): $ \Delta \varphi = \left(\vec k - \vec k_0\right)\cdot \vec r $, $ \vec k_0 $ eintreffender Wellenvektor, $ \vec k $ ausgehender
+	\item \textbf{Streubedingung:} $ \vec K = \vec k - \vec k_0 = \vec G $, $ \vec K $ Streuvektor \begin{itemize}
+		\item Alle anderen Fälle: durch Interferenz Auslöschung
+		\item Bei endlichem Probenvolumen: $  \vec K \approx \vec G $, Streubedingung etwas aufgeweicht
+	\end{itemize}
+\end{itemize}
+\paragraph*{Ewald-Kugel:}
+\begin{itemize}
+	\item Geometrische Konstruktion im Impulsraum um passende Orientierung des Kristalls für Reflexe zu ermitteln.\\
+	\includegraphics[width=\linewidth]{Ewaldkugel.png}
+	\item \textbf{Konstruktion in 2D:} \begin{enumerate}
+		\item Reziprokes Gitter aufzeichnen,
+		\item $ \vec k_0 $ so einzeichnen, dass der Endpunkt des Vektors mit dem Ursprung des reziproken Gitters übereinstimmt. 
+		\item Kreis (in 3D: Kugel) um Anfangspunkt des Vektors mit Radius $ k_0 $ ziehen.
+		\item Streubedingung erfüllt, wenn ein Punkt des reziproken Gitters die Ewald-Kugel berührt. Dorthin zeigt $ \vec k $ aus dem Kreismittelpunkt.
+		\item  Gebeugter Strahl tritt in Richtung $ \vec k $ auf.
+	\end{enumerate}
+	\begin{tabular}{|c|c|}
+		  &  \\ 
+		endliche Abmessungen  & Punkte verschmiert, vergrößert darstellen \\ 
+		begrenzte Strahl-Eindringtiefe  & s. o., oder: Schichtdicke der Ewald-Kugel erhöhen \\ 
+		  &  \\ 
+		  &  \\ 
+		\hline 
+	\end{tabular}  
+\end{itemize}
+\paragraph*{Bragg-Bedingung:}
+\paragraph*{Strukturfaktor:}
+\paragraph*{Debye-Waller-Faktor:}
+
+\subsection{Streuung an Kristallen}
+\subsection{Experimentelle Methoden}
+\includegraphics[width=\linewidth]{monochromatisierung}
+\paragraph*{Drehkristallverfahren:} \begin{itemize}
+		\item Strahlung monochromatisch, Einkristalle, Einfallswinkel durch Kristalldrehung variiert
+		\item Zur Bestimmung von Gitterkonstanten
+		\item Bei Drehung um Drehachse dreht sich auch reziprokes Gitter
+		\item Reflexion, wenn Bragg-Bedingung erfüllt (Gitterpunkt auf Ewaldkugel-Oberfläche)  \begin{center}
+		\includegraphics[width=\linewidth]{Drehkristallmethode}
+	\end{center}
+	\end{itemize}
+\paragraph*{Pulvermethode $ \mathrm{oder} $ Debye-Scherrer-Verfahren:}
+\includegraphics[width=\linewidth]{Debye-Scherrer}
+\paragraph*{Laue-Verfahren:}
+\begin{itemize}
+	\item \begin{center}
+		\includegraphics[width=\linewidth]{Laue-Aufnahme}
+	\end{center} 
+\end{itemize}
+
+\section{Strukturelle Defekte}
+\textcolor{red}{\bf{\fbox{ACHTUNG:}} Kapitel übersprungen}\\
+Bisher: von idealen Kristallen/amorphen Festkörpern ausgegangen. Tatsächlich sind viele physikalische Eigenschaften von realen Materialien durch Defekte beeinflusst.
+\subsection{Punktdefekte}
+\subsection{Ausgedehnte Effekte}
+\section{Gitterdynamik}
+\begin{itemize}
+	\item Festkörpereigenschaften meist zurückzuführen auf:
+	\begin{itemize}
+		\item \textbf{Gitterdynamische} Eigenschaften:  Atombewegung um Gleichgewichtslage
+		\item \textbf{Elektronische} Eigenschaften: Bewegung fast freier Elektronen
+		\item Voneinander weitgehend unabhängig, da Elektronen deutlich schneller als schwere Atomkerne $ \Rightarrow $ \enquote{instantan} neue Elektronenverteilung, falls Atome aus Gleichgewichtslage verschoben (Erhöhung Gesamtenergie). Bei Rückkehr zu Ausgangslage wird aufgewandte Energie zurückgewonnen, Elektronen bleiben dauerhaft im Grundzustand.\\
+		$ \Rightarrow $ Untersysteme können getrennt betrachtet werden, heißt \textbf{adiabatische} oder \textbf{Born-Oppenheimer-Näherung}.
+	\end{itemize}
+\end{itemize}
+\subsection{Elastische Eigenschaften}
+\begin{itemize}
+	\item Makroskopische Betrachtung (nicht-atomare Ebene), \textbf{elastisches Kontinuum}
+	\item Annahme: Verformungen klein, sodass linearer Zusammenhang Kraft $ \leftrightarrow $ Verformung
+\end{itemize}
+\paragraph*{$\mathrm{(mechanische)}$ Spannung $ [\sigma]$:} \begin{itemize}
+	\item $[\bf{\sigma}]$ Tensor,  $ \sigma_{ij} $, Index $ i $: Kraftrichtung, Index $ j $: Angriffsfläche der Kraft
+	\item Komponenten bestimmen: Probe in kleinen Würfel zerschneiden (Kanten $ \parallel $ Achsen kartesisches Koordinatensystem)\\
+	\begin{center}
+		\includegraphics[width=0.4\linewidth]{Spannungstensor}
+	\end{center}
+	\item Vorzeichen: Druck $ \hat = -$, Zug $ \hat = +$ 
+	\item Tensor \textbf{symmetrisch}, falls kein Drehmoment (im Gleichgewicht muss eine Gegenkraft herrschen) $ \rightarrow $ 6 statt 9 unabhängige Komponenten
+\end{itemize}
+\paragraph*{Dehnungstensor $ [\textbf{e}] $:}
+\begin{itemize}
+	\item beschreibt Verformung
+	\item \textbf{Hookesches Gesetz} verknüpft [$ \textbf{e} $] und [$ \sigma $]: $ \sigma_{ij}= \sum\limits_{kl} c_{ijkl}e_{kl} $, $ c_{ijkl} $ 4-stufiger \textbf{Elastizitätstensor}, aus Symmetriegründen 21 statt 81 unabh. Komponenten.
+\end{itemize}
+\paragraph*{Schallwellen:} \begin{itemize}
+	\item breiten sich auch in Festkörpern aus.
+	\item Wellen lassen sich anhand des Zusammenhangs zwischen $ \vec u $ (Auslenkung von FK-Stück aus Ruhelage) und $ \vec q $ (Wellenvektor der Schallwelle):
+	\begin{itemize}
+		\item \textbf{longitudinal:} $ \vec u \parallel\vec q $\\
+		$ \rightarrow $ \emph{quasi-longitudinal}: longitudinal überwiegt
+		\item \textbf{transversal:} $ \vec u \perp \vec q $\\
+		$ \rightarrow $ \emph{quasi-transversal}: transversal überwiegt
+		\item \textbf{Dispersionsrelation} linear $ \rightarrow $ Zusammenhang zwischen Frequenz und Wellenzahl linear, Proportionalitätsfaktor: FK-spezifische Schallgeschwindigkeit\\
+		$ \Rightarrow $ Schallausbreitung in elast. Kontinua dispersionsfrei
+		\item Erzeugung von ebenen Schallwellen:
+			\begin{center}
+				\includegraphics[width=0.4\textwidth]{Ultraschallechos}
+			\end{center}
+			Beobachtet: \emph{Ultraschalldämpfung}, exponentieller Abfall\\
+			eignet sich zur Bestimmung des Elastizitätstensors
+	\end{itemize}
+\end{itemize}
+\subsection{Gitterschwingungen}
+\begin{itemize}
+	\item ein- und zweiatomige Basis unterscheiden sich qualitativ. Größere Basis rechnerisch aufwändig, vom Konzept einfach.
+	\item \textbf{Vereinfachung: lineare Kette}, besonders realitätsnah  bei Ausbreitung in Richtung hoher Symmetrie: \begin{itemize}
+		\item longitudinal: alle Kräfte nicht in Ausbreitungsrichtung mitteln sich aus Symmetriegründen weg, resultierende Kraft nur in Ausbreitungsrichtung.
+		\item transversal: nur Kräfte $ \perp $ Ausbreitungsrichtung, in longitudinaler Richtung kompensieren sich Kräfte
+		\item 1D-Kette reicht, da in einer Netzebene alle Atome gleiche Bewegung
+		\item In den meisten Festkörpern fällt WW so schnell ab, dass nur nächste oder übernächste Nachbarn beachtet werden müssen.
+		\item Im Fall kleiner Auslenkungen kann die rückstellende Kraft bei Auslenkung eines Atoms mit dem Hookesschen Gesetz (Feder) beschrieben werden.  \enquote{Federkonstante} $ D $ kann für transversal und longitudinal verschieden sein!
+	\end{itemize}
+\end{itemize}
+\paragraph*{Einatomige Basis:}
+\begin{itemize}
+	\item wird nur die 1D-Kette mit nächsten Nachbarn berücksichtigt, so ergibt sich für ein Atom die Bewegungsgleichung \begin{align*}
+	M \ddot{u}_n (t) = D \left(u_{n+1} + u_{n-1} - 2 u_n\right)\\
+	\text{mit Ansatz } u_{n} = U e^{i\left(\omega t - kna\right)} \Rightarrow \omega = 2 \sqrt{\frac{D}{M}} \left|\sin\left(\frac{ka}{2}\right)\right|
+	\end{align*}
+	$ a $ Abstand Netzebenen, n aktuelles Atom, $ u $ Verschiebung, $ M $ Masse des Referenzatoms, $ k $ Wellenvektor.
+	\begin{center}
+		\includegraphics[width=0.4\linewidth]{einatomige_Basis}
+	\end{center}
+	\item \textbf{1. Brillouin-Zone enthält sämtliche Informationen} ($ - \frac{\pi}{a} < k \le \frac{\pi}{a}$) (Grund: aus Ansatz, benachbarte Atome max. Phasenunterschied $ 2\pi $)
+	\item Grenzfallbetrachtung:
+	\begin{itemize}
+		\item \textbf{langwellig,} $ q\rightarrow 0 $: linearer Zusammenhang zwischen $ \omega $ und $ k $.
+		\item \textbf{kurzwellig,} $ q\rightarrow \pm \frac{\pi}{a} $: NachbarAtome schwingen gegenphasig, stehende Welle.
+	\end{itemize}
+\end{itemize}
+\paragraph*{Zweiatomige Basis:}
+\begin{itemize}
+	\item Bewegungsgleichung bei WW nur mit nächsten Nachbarn: \begin{align*}
+	M_1 \ddot{u}_n (t) = D (v_n + v_{n-1} - 2 u_n) ~\mathrm{ und }~ M_2 \ddot{v}_n (t) = D \left(u_n + u_{n-1} - 2 v_n\right)\\
+	\text{mit Ansätzen } u_n(t) = u_0 \cdot e^{i(nka-\omega t)} \text{ und } v_n(t) = v_0 \cdot e^{i(nka-\omega t)}\\
+	 \Rightarrow \omega^2_{\pm} = D \underbrace{\left(\frac{1}{M_1} + \frac{1}{M_2}\right)}_{\text{reduzierte Masse }\mu} \pm \sqrt{\left(\frac{1}{M_1} + \frac{1}{M_2}\right)^2 - \frac{4}{M_1M_2}\cdot \sin^2 \left(\frac{ka}{2}\right)} 
+	\end{align*}
+	$ \omega_+ $ heißt \textbf{optischer Zweig}, $ \omega_- $ \textbf{akustischer Zweig}.
+	\begin{center}
+		\includegraphics[width=0.5\linewidth]{zweiatomige_Basis}
+	\end{center}
+	\item \textbf{langwellig} $ q\rightarrow 0 $:\begin{itemize}
+		\item optischer Zweig kaum von Wellenvektor abhängig. Stark unterschiedliche Frequenzen, Grund: akustisch: benachbarte Atome fast die gleiche Phase, optisch: die Atome beider Untergitter schwingen gegenläufig.
+		\item Falls beide Atomsorten entgegengesetzte Ladungen besitzen, entsteht oszillierendes Dipolmoment, können an em. Wellen ankoppeln $ \rightarrow $ \textbf{infrarot-aktiv} (z. B. Ionenkristalle).
+	\end{itemize} 
+	\item \textbf{langwellig} $ q \rightarrow \frac{\pi}{a} $:  je nach betrachtetem Zweig ist entweder das leichte oder das schwere Untergitter in Ruhe, das andere schwingt.
+	\item \textbf{Frequenzlücke:} Zwischen beiden Zweigen \textbf{verbotene Zone} $ \rightarrow $ dort keine Eigenschwingungen $ \rightarrow $ Wellen klingen exponentiell ab.
+	\item \textbf{Immer:} 3 akustische Zweige, 1 longitudinal, 2 transversal (Polarisation $ \perp $)
+	\item \textbf{Allgemein:} Basis mit $ p $ Atomen hat $ 3p $ Zweige, 3 akustische, $ 3p-3 $ optische. Optisch: Doppelt so viele transversal wie longitudinal.
+	\end{itemize}
+\paragraph*{Inelastische Streuung}\begin{itemize}
+	\item \textbf{Streubedingung} $ \vec K \mp \vec q= \vec G $. Es ergeben sich \textbf{Quasiimpuls-} und \textbf{Energieerhaltung:} \begin{align*}
+	\hbar \omega = \hbar \omega_0 \pm \hbar \omega_{\vec{q}}\\
+	\hbar \vec k = \hbar \vec k_0 \pm \hbar \vec q + \hbar \vec G
+	\end{align*}
+	\item Einfallendes Röntgenquant/Neutron/Elektron ww mit Gitter und erzeugt/vernichtet 1 Schwingungsquant (\textbf{Phonon}) mit dem Impuls $ \hbar \vec q $  (\textbf{Quasiimpuls/Kristallimpuls})und der Energie $ \hbar \omega_{\vec{q}} $
+	\item \textbf{Phononerzeugung:}
+	\begin{center}
+		\includegraphics[width=0.4\linewidth]{ewald_phononerzeugung}
+	\end{center}
+	Bei Phononvernichtung wäre der gestreute Wellenvektor $ \vec k $ außerhalb der Ewaldkugel.
+	\item \textbf{$ \rightarrow $ Gitterwellen besitzen auch Teilchencharakter, quantisiert!} $ E_q = \left(n_q+ \frac12\right) \hbar \omega_q $, $ n_q =$ Anzahl der Phononen.
+	\item Bezeichnung Phononenzweige TO, LO, TA, LA transversal/longitudinal optischer/akustischer Zweig
+\end{itemize}
+\paragraph*{Phononen:} \begin{itemize}
+	\item Phonon  nicht einzelnem Atom zugeordnet, \textbf{jedes} Atom trägt zu jedem Phonon bei.
+	\item kein echter Impuls $ \rightarrow $ keine fundamentalen Teilchen $ \rightarrow $ \emph{Quasiteilchen}. ACHTUNG: Impuls gestreuter Teilchen verändert sich \emph{wirklich}, gesamter Festkörper übernimmt Impulsübertrag.
+	\item Phononendispersionsbestimmung: \textbf{kohärente inelatische Streuung}, Neutronen und Röntgen.
+	\end{itemize}
+\paragraph*{Rayleigh-Streuung:} \begin{itemize}
+	\item WW von Licht mit FK ohne Phononenbeteiligung
+	\item elastischer Streuprozess, \emph{keine} Frequenzverschiebung
+	\item Aus Streubedingung $ \Rightarrow $ $ \vec k = \vec k_0 \Rightarrow $ nur Vorwärtsstreuung!
+	\item Tritt in realen Kristallen auf, Defekte als Streuzentren
+\end{itemize}
+\paragraph*{(Anti-)Stokes-Prozess:}\begin{itemize}
+	\item WW Licht mit FK \textbf{MIT} Phononenbeteiligung\\
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{stokes_prozess}
+	\end{center}
+	\item \textbf{Stokes:} Phononerzeugung $ \Rightarrow $ gestreutes Licht größere Wellenlänge
+	\item \textbf{Anti-Stokes:} Phononvernichtung $ \Rightarrow $ gestreutes Licht kleineres $ \lambda $
+	\item kleiner Wellenvektor $ \Rightarrow $ nur Phononen in unmittelb. Umgebung beteiligt
+	\item Wellenzahl Phononen: $ q = 2k_0 \sin \left(\frac{\theta}{2}\right) $
+	\end{itemize}
+\paragraph*{Raman-Streuung:}\begin{itemize}
+	\item Lichtstreuung an \textbf{optischen} Phononen
+	\item Lichtverschiebung kaum  beobachtungsrichtungsabh., da Phononenfrequenz kaum $ \lambda $-Abhängigkeit
+	\item gestreutes Laserlicht wird von Doppelmonochromator analysiert
+	\item \textbf{Typische Verschiebung}: ca. $ \SI{\pm10}{\tera\hertz} $
+	\begin{center}
+		\includegraphics[width=0.4\linewidth]{raman_spektren}
+	\end{center}
+	\item Lage und Breite \textbf{temperaturabhängig}, Grund: leichte Anharmonizität des Gitters
+	\item zusätzlich zu beobachten: \textbf{Infrarotabsorption}, schließen sich oft gegenseitig aus
+\end{itemize}
+\paragraph*{Brillouin-Streuung:}\begin{itemize}
+	\item $ \nu_\text{gestreut} $ vom Streuwinkel $ \vartheta $ abhängig
+	\item Streulicht von frequenzstabilisiertem Laser wird mit \emph{Fabry-Perot-Interferometer} analysiert
+	\item \textbf{Typische Verschiebung:} ca. $ \SI{\pm20}{\giga\hertz} $
+		\begin{center}
+			\includegraphics[width=0.4\linewidth]{brillouin_spektrum}
+		\end{center}
+\end{itemize}
+\subsection{Spezifische Wärmekapazität}
+\begin{itemize}
+	\item Spezifische Wärme bei konst. Druck $ C_p $: wird experimentell bestimmt
+	\item Spezifische Wärme bei konst. Volumen $ C_V $: $ \left(\frac{\partial U}{\partial T}\right)_V $, zur theoretischen Beschreibung
+	\item Zusammenhang: $ C_p - C_V = 9\alpha^2 VT/\kappa $, $ \alpha $ lin. therm.  Ausdehnungskoeff., $ \kappa $ Kompressibilität
+	\item $ C_p $ und $ C_V $ in FK kaum unterschiedlich
+\end{itemize}
+\paragraph*{Dulong-Petit-Gesetz}
+\begin{itemize}
+	\item beschreibt $ C_V $ bei hohen Temperaturen in FK
+	\item $ C_V = 3 N_A k_B = 3 R_m $, $ R_m $ Gaskonst., $ N_A $ Avogadro-Konst.
+\end{itemize}
+\textcolor{red}{\bf{\fbox{ACHTUNG:}} Zustandsdichten-Abschnitte übersprungen, nachfolgendes zu ungenau?}
+\paragraph*{Einstein-Modell:}
+\begin{itemize}
+	\item nur optische Phononen berücksichtigt
+	\item dispersionslos $ \Rightarrow \omega(\vec k) =  $konst.
+	\item polarisationsunabh.
+	\item $ C_V= \left(\frac{\partial U}{\partial T}\right)_V = 3N\left(\frac{\Theta_E}{T}\right)^2k_B \cdot \frac{e^{\frac{\Theta_E}{T}}}{\left(e^{\frac{\Theta_E}{T}}-1\right)^2} $, $ \Theta_E = \frac{\hbar \omega_o}{k_B}$ Einstein-Temperatur\\
+	$ \Rightarrow T\rightarrow\infty$: Dulong-Petit, $ C_V(T\rightarrow 0) = 0 $, Anstieg exponentiell 
+\end{itemize}
+\paragraph*{Debye-Modell:}\begin{itemize}
+	\item nur akustische Phononen berücksichtigt
+	\item Näherung: Dispersion $ \omega(\vec k) = \omega(k)=vk $
+	\item \textbf{Debyesches $ T^3 $-Gesetz:} $ C_V = \left(\frac{\partial U}{\partial T}\right)_V = \frac{12 \pi^4}{5} N k_B \left(\frac{T}{\Theta_D}\right)^3$,\\
+	$ \Theta_D = \hbar \omega_D/k_B$ \textbf{Debye-Temperatur}, $ N $ Zahl der Zustände\\
+	$ \Rightarrow T\rightarrow\infty$: Dulong-Petit, $ C_V(T\rightarrow 0) = 0 $, Anstieg $ T^3 $
+	\item Beispielwerte $ \Theta_D $: C $ \SI{2230}{\kelvin} $, Au $ \SI{164}{\kelvin} $
+	\item Übereinstimmung: sehr gut für kleine und große Temperaturen, ungenau im Zwischenbereich
+	\item \textbf{2D-Systeme}: $ C_V \propto T^2 $ 
+	\end{itemize}
+\section{Anharmonische Gittereigenschaften}
+\begin{itemize}
+	\item Wäre Potential komplett harmonisch, so würde sich kein thermisches Gleichgewicht einstellen
+	\item Auswirkungen Anharmonizität: thermische Ausdehnung, endlicher Wärmewiderstand, Ultraschallabsorption
+\end{itemize}
+\textcolor{red}{\bf{\fbox{ACHTUNG:}} Kapitel vorerst übersprungen, Wegener-Skript und Hunklinger starke Abweichungen}
+\subsection{Zustandsgleichung und thermische Ausdehnung}
+\subsection{Phonon-Phonon-Wechselwirkung}
+\subsection{Wärmetransport in dielektrischen Kristallen}
+\section{Elektronen im Festkörper}
+
+Gültigkeit der adiabatischen Näherung vorausgesetzt.
+\subsection{Freies Elektronengas}
+\subsection{Spezifische Wärme}
+\subsection{Kollektive Phänomene im Elektronengas}
+\subsection{Elektronen im periodischen Potential}
+\subsection{Energiebänder}
+\section{Elektronische Transporteigenschaften}
+\subsection{Bewegungsgleichung und effektive Masse}
+\subsection{Ladungstransport}
+\subsubsection{Drude-Modell}
+\subsubsection{Sommerfeldsche Theorie}
+\subsubsection{Boltzmann-Gleichung}
+\subsubsection{Elektrischer Ladungstransport}
+\subsubsection{Elektronstreuung}
+\subsubsection{Temperaturabhängigkeit der elektrischen Leitfähigkeit}
+\subsubsection{Eindimensionale Leiter}
+\subsubsection{Quantenpunkte}
+\subsubsection{Thermische Leitfähigkeit}
+\subsubsection{Wiedemann-Franz-Gesetz}
+\subsubsection{Fermi-Funktion im stationären Gleichgewicht}
+\subsection{Elektronen im Magnetfeld}
+In diesem und dem vorhergehenden Kapitel wurde klar, dass Fermi-Flächen eine große Bedeutung für das Verhalten von Festkörpern haben.
+\subsubsection{Zyklotronresonanz}
+\subsubsection{Landau-Niveaus}
+\subsubsection{Zustandsdichte im Magnetfeld}
+\subsubsection{De-Haas-van-Alphén-Effekt}
+\subsubsection{Hall-Effekt}
+\subsubsection{Quanten-Hall-Effekt}
+\section{Halbleiter}
+\subsection{Intrinsische kristalline Halbleiter}
+\subsection{Dotierte kristalline Halbleiter}
+\subsection{Inhomogene Halbleiter}
+\subsection{Bauteile}
+\section{Supraleitung}
+\subsection{Phänomenologische Beschreibung}
+\subsection{Mikroskopische Beschreibung}
+\subsection{Makroskopische Wellenfunktion}
+\subsection{Ginzburg-Landau-Theorie und Supraleiter 2. Art}
+\section{Magnetismus}
+\subsection{Dia- und Paramagnetismus}
+\subsection{Ferromagnetismus}
+\subsection{Ferri- und Antiferromagnetismus}
+\subsection{Spingläser}
+\section{Dielektrische und optische Eigenschaften}
+\subsection{Elektrische Polarisation von Isolatoren}
+\subsection{Optische Eigenschaften freier Ladungsträger}
+\end{document}
