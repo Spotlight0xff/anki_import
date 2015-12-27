@@ -11,10 +11,15 @@ ankimedia = None
 media = None
 verbose = False
 
+def print_list(l):
+    for k in l:
+        print(k)
+    print("\n")
 
-def items2anki(items):
+def items2anki(items, keywords):
     global images,media
-    lines = items.splitlines()
+    (title, lines_old) = items
+    lines = lines_old.splitlines()
     lines_new = []
     count_itemize = 1
 
@@ -30,6 +35,10 @@ def items2anki(items):
         line = line.replace("<", "&lt;")
         line = line.replace(">", "&gt;")
         line = line.replace("\t","    ") # \t is our separator
+
+        for k in keywords:
+            if title != k and line.count('\\includegraphics') == 0: # if not itself...
+                line = line.replace(k.strip(), "\\textcolor[rgb]{1,0,0}{"+k.strip()+"}")
 
         # remove \autoref{.*}, replace with figurename
         match = regex.search(r'\\autoref\{fig:(.*?)\}', line)
@@ -72,14 +81,14 @@ def items2anki(items):
 def get_paragraphs(text):
     length = len(text)
     it = 0
-    anki = ''
+    #anki = ''
+    paras = []
     matches = regex.findall('\\\\(paragraph|section|subsection|subsubsection)\*?\{(.*?):?\}\s*\\\\begin\{itemize\}(\[.*?\])?((.|\s)*?)\\\\end\{itemize}', text)
     for match in matches:
         title = match[1]
         items = match[3]
-        txt = items2anki(items)
-        anki += "[latex]"+title+"[/latex]"+"\t"+txt+"\n"
-    return anki
+        paras.append((title, items))
+    return paras
 
 def hash(fname):
     hash = hashlib.sha512()
@@ -220,7 +229,12 @@ def main(argv):
         sys.exit(0);
 
     # lets do the work
-    anki = get_paragraphs(text)
+    paras = get_paragraphs(text)
+    anki = ''
+    keywords = [k[0] for k in paras]
+    for para in paras:
+        txt = items2anki(para, keywords)
+        anki += "[latex]"+para[0]+"[/latex]"+"\t"+txt+"\n"
     copy_images()
     f = open(ofile, 'w')
     f.write(anki)
