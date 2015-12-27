@@ -16,7 +16,13 @@ To support LaTeX packages, use these following steps:
 * Tools -> Manage Note Types
 * select a note type or create a new one
 * click on options while selected
-* add your LaTeX packages in the header field
+* add your LaTeX packages in the header field:
+```
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+```
 * enjoy some juicy LaTeX
 
 ## Usage
