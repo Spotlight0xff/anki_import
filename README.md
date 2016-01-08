@@ -21,6 +21,7 @@ To support LaTeX packages, use these following steps:
 \usepackage{siunitx}
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{enumitem} % customized labels in itemize
 \usepackage[autostyle=true,german=quotes]{csquotes}
 ```
 * enjoy some juicy LaTeX
