@@ -39,7 +39,7 @@ def items2anki(items, keywords):
         for k in keywords:
             if title != k and line.count('\\includegraphics') == 0: # if not itself...
                 #line = line.replace(k.strip(), "\\textcolor[rgb]{1,0,0}{"+k.strip()+"}")
-                subst = re.compile(k.strip(), re.IGNORECASE)
+                subst = re.compile(re.escape(k.strip()), re.IGNORECASE)
                 line = subst.sub(r"\\textcolor[rgb]{1,0,0}{"+k.strip()+"}", line)
 
         # remove \autoref{.*}, replace with figurename
