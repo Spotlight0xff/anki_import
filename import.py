@@ -26,10 +26,14 @@ def items2anki(items, keywords):
     for line in lines:
         if line.isspace() or line == '':
             continue
+        if line.strip().startswith('%'):
+            continue
 
         # handle encapsulated lists
-        if line.find("\\begin{itemize}") != -1:
-            count_itemize += 1
+        count_itemize += line.count("\\begin{itemize}")
+        count_itemize -= line.count("\\end{itemize}")
+        # if line.find("\\begin{itemize}") != -1:
+            # count_itemize += 1
 
         # some visibility replaces
         line = line.replace("<", "&lt;")
@@ -84,12 +88,41 @@ def get_paragraphs(text):
     length = len(text)
     it = 0
     #anki = ''
+    paras_content = []
+    paras_start = []
     paras = []
-    matches = regex.findall('\\\\(paragraph|section|subsection|subsubsection)\*?\{(.*?):?\}\s*\\\\begin\{itemize\}(\[.*?\])?((.|\s)*?)\\\\end\{itemize}', text)
-    for match in matches:
-        title = match[1]
-        items = match[3]
-        paras.append((title, items))
+
+    for para in re.finditer(r'\\(section|subsection|subsubsection|paragraph)\*?{', text):
+        start = para.start()
+        end = para.end()
+        paras_start.append(start)
+
+    count = 0
+    for start in paras_start:
+        if count < len(paras_start)-1:
+            # print(str(start)+":"+str(paras_start[count+1]))
+            para = text[start:paras_start[count+1]]
+        else: # last
+            para = text[start:]
+        paras_content.append(para)
+        count += 1
+
+    # print("count paragraphs: "+str(count))
+    count = 0
+    for para in paras_content:
+
+        # fuck off, Lennard-Jones-Potential!
+        first_itemize = re.search(r'\\begin\{itemize\}', para)
+        if first_itemize:
+            para_title = re.search(r'\\paragraph\*?{(.*)}', para[:first_itemize.start()])
+            if para_title:
+                # print(para_title.group(1))
+                match = re.search(r'\\begin\{itemize\}(\[.*?\])?([\s\S]*)\\end\{itemize\}', para[first_itemize.start():])
+                if match:
+                    paras.append((para_title.group(1),match.group(2)))
+                    count += 1
+
+
     return paras
 
 def hash(fname):
