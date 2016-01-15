@@ -119,7 +119,8 @@ def get_paragraphs(text):
                 # print(para_title.group(1))
                 match = re.search(r'\\begin\{itemize\}(\[.*?\])?([\s\S]*)\\end\{itemize\}', para[first_itemize.start():])
                 if match:
-                    paras.append((para_title.group(1),match.group(2)))
+                    title = para_title.group(1).rstrip(':')
+                    paras.append((title, match.group(2)))
                     count += 1
 
 
@@ -161,6 +162,26 @@ def copy_images():
     print("Copied "+str(count)+" files")
 
 
+def extract_keywords(paras):
+    keywords = []
+    for para in paras:
+        title = para[0]
+        tmp = title.split('\mathrm{oder}')
+        for t in tmp:
+            t = re.sub('\$', '', t)
+            t = re.sub('\s+', ' ', t)
+            t = re.sub('\\\\mathrm{(.*?)}', '\\1', t)
+            t = re.sub('\\\\[a-z]*\{(.*?)\}', '\\1', t)
+            t = re.sub('\((.*?)\)', '\\1', t)
+            t = re.sub('\[(.*?)\]', '\\1', t)
+            t = re.sub('\{(.*?)\}', '\\1', t)
+            t = re.sub('\\\\[a-z]+','', t)
+            t = re.sub('(^|\s+)\w($|\s+)', '', t) # remove single words
+            t = re.sub('(^|\s+)[A-Z_\-]+($|\s+)', '', t) # remove words like SL, B_C etc.
+            t = t.strip()
+            keywords.append(t)
+            # print("-"+t+"-")
+    return keywords
 
 def main(argv):
     global ifile,ofile,ankimedia,media,verbose
@@ -266,7 +287,7 @@ def main(argv):
     # lets do the work
     paras = get_paragraphs(text)
     anki = ''
-    keywords = [k[0] for k in paras]
+    keywords = extract_keywords(paras)
     for para in paras:
         txt = items2anki(para, keywords)
         anki += "[latex]"+para[0]+"[/latex]"+"\t"+txt+"\n"
